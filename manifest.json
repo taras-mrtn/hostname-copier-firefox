@@ -1,14 +1,11 @@
 {
   "manifest_version": 2,
   "name": "Hostname Copier",
-  "version": "0.1.0",
-  "description": "Copies the current webpage hostname to clipboard",
-  
-  "permissions": [
-    "activeTab",
-    "clipboardWrite",
-    "tabs"
-  ],
+  "version": "0.3.0",
+  "description": "__MSG_extensionDescription__",
+  "default_locale": "en",
+
+  "permissions": ["activeTab", "clipboardWrite", "tabs"],
 
   "browser_action": {
     "default_title": "Copy Hostname",
@@ -25,4 +22,4 @@
   "background": {
     "scripts": ["background.js"]
   }
-} 
+}

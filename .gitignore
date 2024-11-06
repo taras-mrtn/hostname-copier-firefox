@@ -1,0 +1,5 @@
+*.zip
+.vscode/
+.zed/
+.DS_Store
+web-ext-artifacts/
