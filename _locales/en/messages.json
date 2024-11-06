@@ -1,0 +1,29 @@
+{
+  "extensionName": {
+    "message": "Hostname Copier"
+  },
+  "extensionDescription": {
+    "message": "Copies the current webpage hostname to clipboard"
+  },
+  "cannotAccessTab": {
+    "message": "❌ Cannot access current tab"
+  },
+  "invalidUrl": {
+    "message": "❌ Invalid URL format"
+  },
+  "httpOnly": {
+    "message": "⚠️ Can only copy hostnames from HTTP/HTTPS URLs"
+  },
+  "noHostname": {
+    "message": "⚠️ No hostname found in URL"
+  },
+  "clipboardError": {
+    "message": "❌ Failed to copy to clipboard"
+  },
+  "unexpectedError": {
+    "message": "❌ Unexpected error occurred"
+  },
+  "successMessage": {
+    "message": "✅ Copied to clipboard!"
+  }
+}

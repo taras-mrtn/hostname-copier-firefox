@@ -1,15 +1,31 @@
-document.addEventListener('DOMContentLoaded', async () => {
-  const messageElement = document.getElementById('message');
-  
+document.addEventListener("DOMContentLoaded", async () => {
+  const hostnameElement = document.getElementById("hostname");
+  const messageElement = document.getElementById("message");
+
   try {
-    // Get the active tab
-    const tabs = await browser.tabs.query({active: true, currentWindow: true});
-    const result = await browser.extension.getBackgroundPage().copyHostname(tabs[0]);
-    
+    const tabs = await browser.tabs.query({
+      active: true,
+      currentWindow: true,
+    });
+    const result = await browser.extension
+      .getBackgroundPage()
+      .copyHostname(tabs[0]);
+
+    if (!result.error) {
+      hostnameElement.textContent = result.hostname;
+    }
+
     messageElement.textContent = result.message;
-    messageElement.className = `message ${result.error ? 'error' : 'success'}`;
+    messageElement.className = `message ${result.error ? "error" : "success"}`;
+
+    // Close popup after 2 seconds if operation was successful
+    if (!result.error) {
+      setTimeout(() => {
+        window.close();
+      }, 2000);
+    }
   } catch (error) {
-    messageElement.textContent = 'Failed to copy hostname';
-    messageElement.className = 'message error';
+    messageElement.textContent = browser.i18n.getMessage("unexpectedError");
+    messageElement.className = "message error";
   }
-}); 
+});

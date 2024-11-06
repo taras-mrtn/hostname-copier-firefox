@@ -1,26 +1,35 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-  <style>
-    body {
-      width: 200px;
-      padding: 10px;
-      font-family: Arial, sans-serif;
-    }
-    .message {
-      margin: 0;
-      text-align: center;
-    }
-    .success {
-      color: #28a745;
-    }
-    .error {
-      color: #dc3545;
-    }
-  </style>
-</head>
-<body>
-  <p id="message" class="message"></p>
-  <script src="popup.js"></script>
-</body>
-</html> 
+    <head>
+        <style>
+            body {
+                width: 300px;
+                padding: 10px;
+                font-family: Arial, sans-serif;
+            }
+            .hostname {
+                font-size: 16px;
+                font-weight: bold;
+                margin: 0 0 8px 0;
+                word-break: break-all;
+                text-align: center;
+            }
+            .message {
+                margin: 0;
+                text-align: center;
+                font-size: 14px;
+            }
+            .success {
+                color: #28a745;
+            }
+            .error {
+                color: #dc3545;
+            }
+        </style>
+    </head>
+    <body>
+        <p id="hostname" class="hostname"></p>
+        <p id="message" class="message"></p>
+        <script src="popup.js"></script>
+    </body>
+</html>

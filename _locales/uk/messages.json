@@ -1,0 +1,29 @@
+{
+  "extensionName": {
+    "message": "Копіювання домену"
+  },
+  "extensionDescription": {
+    "message": "Копіює доменне ім'я поточної веб-сторінки в буфер обміну"
+  },
+  "cannotAccessTab": {
+    "message": "❌ Неможливо отримати доступ до поточної вкладки"
+  },
+  "invalidUrl": {
+    "message": "❌ Невірний формат URL"
+  },
+  "httpOnly": {
+    "message": "⚠️ Можна копіювати лише домени з HTTP/HTTPS URL"
+  },
+  "noHostname": {
+    "message": "⚠️ В URL не знайдено доменного імені"
+  },
+  "clipboardError": {
+    "message": "❌ Помилка копіювання в буфер обміну"
+  },
+  "unexpectedError": {
+    "message": "❌ Сталася неочікувана помилка"
+  },
+  "successMessage": {
+    "message": "✅ Скопійовано в буфер обміну!"
+  }
+}
