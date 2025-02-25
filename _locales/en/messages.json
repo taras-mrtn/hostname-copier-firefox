@@ -9,21 +9,24 @@
     "message": "❌ Cannot access current tab"
   },
   "invalidUrl": {
-    "message": "❌ Invalid URL format"
+    "message": "❌ Invalid URL format. Please check the URL."
   },
   "httpOnly": {
-    "message": "⚠️ Can only copy hostnames from HTTP/HTTPS URLs"
+    "message": "⚠️ Can only copy hostnames from HTTP/HTTPS URLs. Other protocols are not supported."
   },
   "noHostname": {
-    "message": "⚠️ No hostname found in URL"
+    "message": "⚠️ No hostname found in URL. Please ensure the URL has a proper hostname."
   },
   "clipboardError": {
-    "message": "❌ Failed to copy to clipboard"
+    "message": "❌ Failed to copy to clipboard. Please try again."
   },
   "unexpectedError": {
-    "message": "❌ Unexpected error occurred"
+    "message": "❌ Unexpected error occurred. Please try again later."
   },
   "successMessage": {
-    "message": "✅ Copied to clipboard!"
+    "message": "✅ Hostname successfully copied to clipboard!"
+  },
+  "keyboardShortcut": {
+    "message": "Keyboard shortcut: Alt+Shift+H"
   }
 }

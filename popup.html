@@ -1,11 +1,43 @@
 <!doctype html>
-<html>
+<html class="initial-dark">
     <head>
+        <!-- Force dark mode initially -->
         <style>
+            /* Default to dark mode first to prevent flash */
+            html.initial-dark {
+                background-color: #2b2a33;
+            }
+            html.initial-dark body {
+                background-color: #2b2a33;
+                color: #ffffff;
+            }
+            html.initial-dark .success {
+                color: #4ade80;
+            }
+            html.initial-dark .error {
+                color: #f87171;
+            }
+            html.initial-dark .shortcut {
+                color: #9ca3af;
+            }
+            
+            /* Main styles that will be applied after initialization */
             body {
                 width: 300px;
                 padding: 10px;
                 font-family: Arial, sans-serif;
+                background-color: #ffffff;
+                color: #000000;
+                transition: none; /* Remove transition to prevent flash */
+            }
+            /* Applied when truly in light mode */
+            html.light-mode-confirmed body {
+                background-color: #ffffff;
+                color: #000000;
+            }
+            body.dark-theme {
+                background-color: #2b2a33;
+                color: #ffffff;
             }
             .hostname {
                 font-size: 16px;
@@ -25,11 +57,28 @@
             .error {
                 color: #dc3545;
             }
+            /* Success and error colors in dark theme */
+            body.dark-theme .success {
+                color: #4ade80;
+            }
+            body.dark-theme .error {
+                color: #f87171;
+            }
+            .shortcut {
+                margin-top: 10px;
+                font-size: 12px;
+                color: #6c757d;
+                text-align: center;
+            }
+            body.dark-theme .shortcut {
+                color: #9ca3af;
+            }
         </style>
     </head>
     <body>
         <p id="hostname" class="hostname"></p>
         <p id="message" class="message"></p>
+        <p id="shortcut" class="shortcut"></p>
         <script src="popup.js"></script>
     </body>
 </html>
