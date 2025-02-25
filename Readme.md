@@ -9,6 +9,7 @@ A lightweight browser extension that copies the current webpage's hostname to yo
 - 🔒 Works with HTTP and HTTPS URLs
 - ⚡ Lightweight and fast
 - 🛡️ No data collection or tracking
+- ⌨️ Keyboard shortcut (Alt+Shift+H)
 
 ## Installation
 
@@ -18,7 +19,9 @@ A lightweight browser extension that copies the current webpage's hostname to yo
 ## Usage
 
 1. Navigate to any webpage
-2. Click the Hostname Copier icon in your browser toolbar
+2. Either:
+   - Click the Hostname Copier icon in your browser toolbar, or
+   - Use the keyboard shortcut Alt+Shift+H
 3. The hostname will be automatically copied to your clipboard
 4. Look for the success message confirmation
 
@@ -33,6 +36,7 @@ The extension requires minimal permissions:
 - `activeTab`: To access the current tab's URL
 - `clipboardWrite`: To copy the hostname to clipboard
 - `tabs`: To read the current tab's URL
+- `theme`: To detect browser theme for UI adaptation
 
 ## Development
 

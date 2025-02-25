@@ -1,15 +1,21 @@
 {
   "manifest_version": 2,
   "name": "Hostname Copier",
-  "version": "0.3.0",
+  "version": "0.4.1",
   "description": "__MSG_extensionDescription__",
   "default_locale": "en",
 
-  "permissions": ["activeTab", "clipboardWrite", "tabs"],
+  "permissions": ["activeTab", "clipboardWrite", "tabs", "theme"],
 
   "browser_action": {
     "default_title": "Copy Hostname",
-    "default_popup": "popup.html"
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    }
   },
 
   "icons": {
@@ -21,5 +27,15 @@
 
   "background": {
     "scripts": ["background.js"]
+  },
+
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Alt+Shift+H",
+        "mac": "Alt+Shift+H"
+      },
+      "description": "Copy the hostname of the current tab"
+    }
   }
 }
