@@ -1,0 +1,63 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Check version change
+        id: version
+        run: |
+          VERSION=$(jq -r .version manifest.json)
+          echo "current=$VERSION" >> "$GITHUB_OUTPUT"
+          if git show HEAD~1:manifest.json >/dev/null 2>&1; then
+            PREV=$(git show HEAD~1:manifest.json | jq -r .version)
+          else
+            PREV=""
+          fi
+          if [ "$VERSION" != "$PREV" ]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: npm install -g web-ext
+
+      - run: web-ext lint
+
+      - run: web-ext build
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hostname-copier
+          path: web-ext-artifacts/*.zip
+
+      - name: Copy as xpi
+        if: steps.version.outputs.changed == 'true' && github.ref == 'refs/heads/main'
+        run: cp web-ext-artifacts/*.zip web-ext-artifacts/hostname-copier.xpi
+
+      - name: Create release
+        if: steps.version.outputs.changed == 'true' && github.ref == 'refs/heads/main'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.version.outputs.current }}
+          name: v${{ steps.version.outputs.current }}
+          files: |
+            web-ext-artifacts/*.zip
+            web-ext-artifacts/hostname-copier.xpi
