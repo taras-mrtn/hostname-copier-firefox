@@ -1,11 +1,20 @@
 {
   "manifest_version": 2,
   "name": "Hostname Copier",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "description": "__MSG_extensionDescription__",
   "default_locale": "en",
 
-  "permissions": ["activeTab", "clipboardWrite", "tabs", "theme"],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{4178160e-dcb2-43ca-9f61-f6da3572d69d}",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
+    }
+  },
+
+  "permissions": ["activeTab", "clipboardWrite", "theme"],
 
   "browser_action": {
     "default_title": "Copy Hostname",

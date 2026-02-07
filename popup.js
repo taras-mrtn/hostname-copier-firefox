@@ -15,11 +15,14 @@ const isColorDark = (color) => {
   
   if (typeof color === 'string') {
     // Handle hex or rgb string
-    const match = color.match(/^rgb\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)$/i);
+    const match = color.match(/^rgba?\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)/i);
     if (match) {
       [, r, g, b] = match.map(Number);
     } else if (color.startsWith('#')) {
-      const hex = color.substring(1);
+      let hex = color.substring(1);
+      if (hex.length === 3) {
+        hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+      }
       r = parseInt(hex.substring(0, 2), 16);
       g = parseInt(hex.substring(2, 4), 16);
       b = parseInt(hex.substring(4, 6), 16);
@@ -71,9 +74,12 @@ const applyTheme = () => {
 const getHostname = async () => {
   try {
     // Try background page direct access first (Manifest V2)
-    const backgroundPage = browser.extension.getBackgroundPage();
+    const backgroundPage = await browser.runtime.getBackgroundPage();
     if (backgroundPage?.copyHostname) {
       const tabs = await browser.tabs.query({ active: true, currentWindow: true });
+      if (!tabs.length) {
+        return { message: browser.i18n.getMessage("cannotAccessTab"), error: true };
+      }
       return await backgroundPage.copyHostname(tabs[0]);
     } else {
       // Fallback to message passing
@@ -102,8 +108,12 @@ const initPopup = async () => {
   // Listen for theme changes
   browser.theme.onUpdated.addListener(applyTheme);
 
-  // Display keyboard shortcut info
-  shortcutElement.textContent = browser.i18n.getMessage("keyboardShortcut");
+  // Display keyboard shortcut info (fetch actual configured shortcut)
+  browser.commands.getAll().then((commands) => {
+    const cmd = commands.find(c => c.name === "_execute_browser_action");
+    const shortcut = cmd?.shortcut || "Alt+Shift+H";
+    shortcutElement.textContent = browser.i18n.getMessage("keyboardShortcut", [shortcut]);
+  });
 
   try {
     // Get hostname from background
@@ -120,7 +130,7 @@ const initPopup = async () => {
     if (!result.error) {
       setTimeout(() => {
         window.close();
-      }, 2000);
+      }, 3000);
     }
   } catch (error) {
     console.error("Error in popup:", error);

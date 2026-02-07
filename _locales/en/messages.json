@@ -27,6 +27,11 @@
     "message": "✅ Hostname successfully copied to clipboard!"
   },
   "keyboardShortcut": {
-    "message": "Keyboard shortcut: Alt+Shift+H"
+    "message": "Keyboard shortcut: $shortcut$",
+    "placeholders": {
+      "shortcut": {
+        "content": "$1"
+      }
+    }
   }
 }

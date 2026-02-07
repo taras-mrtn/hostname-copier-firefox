@@ -27,6 +27,11 @@
     "message": "✅ Ім'я домену успішно скопійовано в буфер обміну!"
   },
   "keyboardShortcut": {
-    "message": "Комбінація клавіш: Alt+Shift+H"
+    "message": "Комбінація клавіш: $shortcut$",
+    "placeholders": {
+      "shortcut": {
+        "content": "$1"
+      }
+    }
   }
 }

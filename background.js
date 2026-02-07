@@ -69,7 +69,12 @@ async function copyHostname(tab) {
 browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === "copyHostname") {
     browser.tabs.query({ active: true, currentWindow: true })
-      .then(tabs => copyHostname(tabs[0]))
+      .then(tabs => {
+        if (!tabs.length) {
+          return { message: browser.i18n.getMessage("cannotAccessTab"), error: true };
+        }
+        return copyHostname(tabs[0]);
+      })
       .then(result => sendResponse(result))
       .catch(error => {
         console.error("Error in message handler:", error);
